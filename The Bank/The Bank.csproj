@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>The_Bank</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="UserBankAccounts\**" />
+    <EmbeddedResource Remove="UserBankAccounts\**" />
+    <None Remove="UserBankAccounts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BankAndBankFactory\BankAndBankFactory.csproj" />
+    <ProjectReference Include="..\MySimpleTools\MySimpleTools.csproj" />
+    <ProjectReference Include="..\TextUI\TextUI.csproj" />
+    <ProjectReference Include="..\UserBankAccounts\UserBankAccounts.csproj" />
+  </ItemGroup>
+
+</Project>
