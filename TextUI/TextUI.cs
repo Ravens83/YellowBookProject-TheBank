@@ -89,6 +89,8 @@ namespace TextUI
 
         public void AddNewNormalAccount()
         {
+            Console.WriteLine("\nAdding new account");
+            Console.WriteLine("     To cancel creation write the command: cancel");
             string newName = TextUITools.TextUINewNameTest("Enter new name: ");
             string command = newName.Trim();
             command = command.ToLower();
@@ -121,7 +123,8 @@ namespace TextUI
         public void AddNewBabyAccount()
         {
             string parentName;
-            Console.WriteLine("     To cancel creation write the command: cancel");
+            Console.WriteLine("\nAdding new baby account");
+            Console.WriteLine("\n     To cancel creation write the command: cancel");
             string newName = TextUITools.TextUINewNameTest("Enter new name: ");
             string command = newName.Trim();
             command = command.ToLower();
@@ -236,13 +239,13 @@ namespace TextUI
                             if(!success)
                                 throw new Exception ("Unkown error in the Account removal process");
                             else
-                                Console.WriteLine("The account for {0} has been successfully removed from the bank", accountName);
+                                Console.WriteLine("\nThe account for {0} has been successfully removed from the bank", accountName);
                         }
 
                         editCompleted = true;
                     }
                     else
-                        Console.WriteLine("Invalid Account Name");
+                        Console.WriteLine("\nInvalid Account Name");
                 }
 
             } while (command.ToLower() != "cancel" && !editCompleted);
@@ -252,7 +255,7 @@ namespace TextUI
 
         public void ListAccounts()
         {
-            Console.WriteLine("Here are the account names for all accounts in the bank");
+            Console.WriteLine("\nHere are the account names for all accounts in the bank");
             List<string> accountNames = this.bank.ListAccountNames();
             accountNames.ForEach(Console.WriteLine);
         }
@@ -312,7 +315,7 @@ namespace TextUI
 
         public void AccountEditTextUIEditName()
         {
-            Console.WriteLine("Name Edit");
+            Console.WriteLine("\nName Edit");
             Console.WriteLine("     To cancel enter the command: cancel");
 
             string oldName = this.account.GetName();
@@ -325,18 +328,18 @@ namespace TextUI
 
                 this.bank.StoreAccount(this.account);
                 this.bank.DeleteAccount(oldName);
-                Console.WriteLine("Account has changed name to: {0}",newName);
+                Console.WriteLine("\nAccount has changed name to: {0}", newName);
             }
             else
             {
-                Console.WriteLine("Name edit was cancelled.");
+                Console.WriteLine("\nName edit was cancelled.");
             }
         }
 
         public void AccountEditTextUIPayInFunds()
         {
             string newValue;
-            Console.WriteLine("Pay in");
+            Console.WriteLine("\nPay in");
             while (true)
             {
                 Console.Write("Enter value to pay in: ");
@@ -360,7 +363,7 @@ namespace TextUI
         public void AccountEditTextUIWithdrawFunds()
         {
             string newValue;
-            Console.WriteLine("Withdraw");
+            Console.WriteLine("\nWithdraw");
             while (true)
             {
                 Console.Write("Enter value to withdraw: ");
@@ -386,7 +389,7 @@ namespace TextUI
 
         public void AccountEditTextUIReadBalance()
         {
-            Console.WriteLine("Current Balance : {0}", this.account.GetBalance());
+            Console.WriteLine("\nCurrent Balance : {0}", this.account.GetBalance());
         }
     }
 
