@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace MySimpleTools
 {
@@ -71,6 +72,20 @@ namespace MySimpleTools
                 }
 
             }
+            return true;
+        }
+
+        public static bool FileExistsCheck(string filename) //checks if file exists, if not it creates it for a new empty bank
+        {
+            if(!System.IO.File.Exists(filename))
+            {
+                System.IO.TextWriter textOut = new System.IO.StreamWriter(filename);
+                textOut.WriteLine("0");
+                textOut.Close();
+
+                return false;
+            }
+                
             return true;
         }
     }

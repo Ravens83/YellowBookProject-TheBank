@@ -17,6 +17,10 @@ namespace The_Bank
             string bankFile = "Bankdata.txt";
             string activeBankFile = "BankTemporary.txt";
 
+            SimpleTools.FileExistsCheck(buildReportFile);   //Creates and initiliaizes new bank if none is fund
+            SimpleTools.FileExistsCheck(bankFile);          //
+            SimpleTools.FileExistsCheck(activeBankFile);    //
+
             activeBuildNumber = SimpleTools.ReadBuildReport(buildReportFile)+1;
 
             string backupBankFile = @"BankdataBackups\BackupBankData" + activeBuildNumber + ".txt";
