@@ -11,7 +11,6 @@ namespace UserBankAccounts
         decimal GetBalance();
         string GetName();
         bool SetName(string inName);
-
         bool Save(string filename);
         void Save(System.IO.TextWriter textout);
         string ToString();
@@ -67,7 +66,52 @@ namespace UserBankAccounts
             }
         }
 
+        //getters and setters:
+        public decimal GetBalance()
+        {
+            return this.balance;
+        }
+
+        private bool SetBalance(decimal inBalance)          //To be improved?
+        {
+            this.balance = inBalance;
+            return true;
+        }
+
+        public string GetName()
+        {
+            return this.name;
+        }
+
+        public bool SetName(string inName)      //WARNING. IF THE NAME IS KEY IN A LIBRARYBANK YOU MUST REMOVE AND ADD EVERY TIME THE NAME IS EDITED
+        {
+            string reply;
+            reply = ValidateName(inName);
+            if (reply.Length > 0)
+            {
+                return false;
+            }
+
+            this.name = inName.Trim();
+            return true;
+        }
+
         //methods:
+
+        public static string ValidateName(string testName)
+        {
+            if (testName == null)
+            {
+                return "Name parameter null";
+            }
+            string trimmedName = testName.Trim();
+            if (trimmedName.Length == 0)
+            {
+                return "No text in the name";
+            }
+            return "";
+        }
+
         public bool PayInFunds(decimal amount)
         {
             if (amount > 0)
@@ -93,44 +137,6 @@ namespace UserBankAccounts
             {
                 return false;
             }
-        }
-
-        public decimal GetBalance()
-        {
-            return this.balance;
-        }
-
-        public string GetName()
-        {
-            return this.name;
-        }
-
-        public static string ValidateName(string testName)
-        {
-            if (testName == null)
-            {
-                return "Name parameter null";
-            }
-            string trimmedName = testName.Trim();
-            if (trimmedName.Length == 0)
-            {
-                return "No text in the name";
-            }
-            return "";
-        }
-
-        public bool SetName(string inName)      //WARNING. IF THE NAME IS KEY IN A LIBRARYBANK YOU MUST REMOVE AND ADD EVERY TIME THE NAME IS EDITED
-        {
-            string reply;
-            reply = ValidateName(inName);
-            if (reply.Length > 0)
-            {
-                return false;
-            }
-
-            this.name = inName.Trim();
-            return true;
-
         }
 
         public virtual void Save(System.IO.TextWriter textOut)
@@ -170,11 +176,7 @@ namespace UserBankAccounts
         //Setters for private use:
 
 
-        private bool SetBalance(decimal inBalance)          //To be improved?
-        {
-            this.balance = inBalance;
-            return true;
-        }
+
     }
 
     public sealed class CustomerAccount : Account
