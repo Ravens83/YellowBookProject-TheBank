@@ -13,9 +13,9 @@ namespace The_Bank
         public static void Main()
         {
             int activeBuildNumber;
-            string buildReportFile = "CurrentBuild.txt";
-            string bankFile = "Bankdata.txt";
-            string activeBankFile = "BankTemporary.txt";
+            string buildReportFile = @"RuntimeResourceFiles\CurrentBuild.txt";
+            string bankFile = @"RuntimeResourceFiles\Bankdata.txt";
+            string activeBankFile = @"RuntimeResourceFiles\BankTemporary.txt";
 
             SimpleTools.FileExistsCheck(buildReportFile);   //Creates and initiliaizes new bank if none is fund
             SimpleTools.FileExistsCheck(bankFile);          //
@@ -23,7 +23,7 @@ namespace The_Bank
 
             activeBuildNumber = SimpleTools.ReadBuildReport(buildReportFile)+1;
 
-            string backupBankFile = @"BankdataBackups\BackupBankData" + activeBuildNumber + ".txt";
+            string backupBankFile = @"RuntimeResourceFiles\BankdataBackups\BackupBankData" + activeBuildNumber + ".txt";
 
             DictionaryBank gringotts = DictionaryBank.Load(bankFile);
             gringotts.Save(backupBankFile);
